@@ -1,0 +1,88 @@
+/* L-Nutra · Voice of the Customer — Reports view styles (js/views/reports.js)
+   Layout baseline lives in css/views.css ([data-view="reports"] .reports-layout etc.); this file adds the view's own parts. */
+
+[data-view="reports"] .reports-layout { grid-template-columns: minmax(0, 1fr) 320px; align-items: start; }
+[data-view="reports"] .reports-side { min-width: 0; }
+[data-view="reports"] .reports-side .card { display: flex; flex-direction: column; gap: var(--sp-3); }
+[data-view="reports"] .reports-side .card__header { margin-bottom: 0; }
+[data-view="reports"] .reports-controls .segmented { align-self: flex-start; }
+[data-view="reports"] .reports-controls .field[hidden] { display: none; }
+
+/* Preview */
+[data-view="reports"] .report-preview__bar {
+  display: flex; align-items: flex-start; justify-content: space-between; gap: var(--sp-3); flex-wrap: wrap;
+  padding: var(--sp-4); border-bottom: 1px solid var(--border);
+}
+[data-view="reports"] .report-preview__body { padding: var(--sp-4); background: var(--bg); min-height: 320px; }
+[data-view="reports"] .report-preview__body .report { max-width: none; }
+[data-view="reports"] .report-preview__body .report table { display: block; overflow-x: auto; max-width: 100%; }
+[data-view="reports"] .report-preview__body .report table thead, [data-view="reports"] .report-preview__body .report table tbody { display: table; width: 100%; }
+[data-view="reports"] .report-preview__body .report-tiles { list-style: none; padding: 0; margin: 0 0 var(--sp-3); display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: var(--sp-3); }
+[data-view="reports"] .report-preview__body .report-tiles li { border: 1px solid var(--border); border-radius: var(--radius-sm); padding: var(--sp-2) var(--sp-3); background: var(--surface); }
+[data-view="reports"] .report-preview__body .report-tile__value { display: block; font-size: var(--fs-20); font-weight: 600; line-height: 1.1; font-variant-numeric: tabular-nums; }
+[data-view="reports"] .report-preview__body .report-tile__label { display: block; font-size: var(--fs-12); color: var(--muted); }
+[data-view="reports"] .report-preview__body .report-kicker { margin: 0 0 4px; font-size: var(--fs-12); text-transform: uppercase; letter-spacing: .04em; color: var(--brand); font-weight: 600; }
+[data-view="reports"] .report-preview__body .report-lede { font-family: var(--font-display); font-size: var(--fs-16); line-height: 1.45; }
+[data-view="reports"] .report-preview__body .report-note, [data-view="reports"] .report-preview__body .report-muted { color: var(--muted); font-size: var(--fs-12); }
+[data-view="reports"] .report-preview__body .report-box { border: 1px solid var(--border); border-radius: var(--radius-sm); padding: var(--sp-3); margin-bottom: var(--sp-3); background: var(--surface-2); }
+[data-view="reports"] .report-preview__body .report-box__label { margin: 0 0 var(--sp-2); font-size: var(--fs-12); text-transform: uppercase; letter-spacing: .04em; color: var(--muted); font-weight: 600; }
+[data-view="reports"] .report-preview__body .report-verbatim { margin: 0 0 var(--sp-3); padding: var(--sp-2) var(--sp-3); border-left: 3px solid var(--border); background: var(--surface-2); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
+[data-view="reports"] .report-preview__body .report-verbatim--praise { border-left-color: var(--good); }
+[data-view="reports"] .report-preview__body .report-verbatim--complaint { border-left-color: var(--critical); }
+[data-view="reports"] .report-preview__body .report-verbatim__subject { font-weight: 600; margin-bottom: 4px; }
+[data-view="reports"] .report-preview__body .report-verbatim__meta { font-size: var(--fs-12); color: var(--muted); }
+[data-view="reports"] .report-preview__body .report-footer { margin-top: var(--sp-5); padding-top: var(--sp-3); border-top: 1px solid var(--border); color: var(--muted); font-size: var(--fs-12); }
+[data-view="reports"] .report-preview__body .report-caveats { color: var(--text-2); font-size: var(--fs-13); }
+
+/* Actions carried forward */
+[data-view="reports"] .action-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: var(--sp-2); }
+[data-view="reports"] .action-list__empty { font-size: var(--fs-13); }
+[data-view="reports"] .action-item {
+  display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: var(--sp-2); align-items: start;
+  padding: var(--sp-2) var(--sp-3); border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--surface);
+}
+[data-view="reports"] .action-item input[type="checkbox"] { margin-top: 3px; accent-color: var(--accent-strong); width: 16px; height: 16px; }
+[data-view="reports"] .action-item__text { font-size: var(--fs-14); line-height: 1.4; cursor: pointer; overflow-wrap: anywhere; }
+[data-view="reports"] .action-item.is-done .action-item__text { text-decoration: line-through; color: var(--muted); }
+[data-view="reports"] .action-item__meta { font-size: var(--fs-12); margin-top: 2px; }
+[data-view="reports"] .action-item__tools { display: flex; gap: 2px; }
+[data-view="reports"] .action-item__edit { grid-column: 1 / -1; display: flex; flex-direction: column; gap: var(--sp-2); }
+[data-view="reports"] .action-add { display: flex; flex-direction: column; gap: var(--sp-2); }
+[data-view="reports"] .action-add__row { display: flex; gap: var(--sp-2); flex-wrap: wrap; align-items: center; }
+[data-view="reports"] .action-add__row .input { flex: 1 1 110px; min-width: 0; width: auto; }
+[data-view="reports"] .action-add .input { width: 100%; min-height: 34px; padding: 6px 10px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--surface); color: var(--text); font-size: var(--fs-14); }
+[data-view="reports"] .action-add .input--sm, [data-view="reports"] .action-item__edit .input--sm { min-height: 28px; padding: 2px 8px; font-size: var(--fs-13); }
+[data-view="reports"] .action-item__edit .input { min-width: 0; }
+
+/* Export grid */
+[data-view="reports"] .export-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-2); }
+[data-view="reports"] .export-grid .btn { width: 100%; }
+
+/* Data-quality grid */
+[data-view="reports"] .dq-item__n { font-size: var(--fs-12); font-variant-numeric: tabular-nums; }
+
+/* In-place print fallback: only the preview prints */
+@media print {
+  body.voc-print-report .reports-side,
+  body.voc-print-report .view-header,
+  body.voc-print-report .report-preview__bar { display: none !important; }
+  body.voc-print-report .reports-layout { display: block; }
+  body.voc-print-report .report-preview { border: 0; }
+  body.voc-print-report .report-preview__body { padding: 0; background: #fff; }
+}
+
+/* Tablet */
+@media (max-width: 1023px) {
+  [data-view="reports"] .reports-layout { grid-template-columns: 1fr; }
+  [data-view="reports"] .reports-side { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-4); }
+}
+
+/* Phone */
+@media (max-width: 767px) {
+  [data-view="reports"] .reports-side { grid-template-columns: 1fr; }
+  [data-view="reports"] .report-preview__body { padding: var(--sp-3); }
+  [data-view="reports"] .report-preview__body .report { padding: var(--sp-3); }
+  [data-view="reports"] .export-grid { grid-template-columns: 1fr 1fr; }
+  [data-view="reports"] .action-item { grid-template-columns: auto minmax(0, 1fr); }
+  [data-view="reports"] .action-item__tools { grid-column: 2; }
+}

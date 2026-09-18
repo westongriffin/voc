@@ -1,0 +1,47 @@
+/* L-Nutra · Voice of the Customer — Regulatory view styles (SPEC §5.7)
+   Complements css/views.css (.regulatory-charts, .regulatory-table, .regulatory-lots, .empty-state--good, .countdown--*). */
+
+[data-view="regulatory"] .reg-clocks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-3); }
+[data-view="regulatory"] .how { margin-top: calc(-1 * var(--sp-2)); }
+[data-view="regulatory"] .how__body { max-width: none; }
+[data-view="regulatory"] .reg-clock { font-size: var(--fs-13); line-height: 1.45; }
+[data-view="regulatory"] .reg-clock--medwatch { border-left-color: var(--serious); }
+[data-view="regulatory"] .reg-clock--rfr { border-left-color: var(--info); }
+[data-view="regulatory"] .reg-allclear { margin-bottom: var(--sp-5); }
+[data-view="regulatory"] .reg-allclear[hidden] { display: none; }
+[data-view="regulatory"] .reg-tiles { margin-bottom: var(--sp-5); }
+[data-view="regulatory"] .reg-deadlines .table td { height: auto; padding-top: 6px; padding-bottom: 6px; line-height: 1.35; }
+[data-view="regulatory"] .reg-deadlines .table td.reg-record { max-width: 320px; }
+[data-view="regulatory"] .reg-subject { display: inline-block; max-width: 300px; font-size: var(--fs-12); vertical-align: bottom; }
+[data-view="regulatory"] .reg-remaining { font-variant-numeric: tabular-nums; font-weight: 600; }
+[data-view="regulatory"] .reg-remaining.countdown--due { color: var(--critical); }
+[data-view="regulatory"] .reg-remaining.countdown--soon { color: var(--serious-text); }
+[data-view="regulatory"] .reg-check { display: inline-flex; align-items: center; gap: 4px; font-variant-numeric: tabular-nums; }
+[data-view="regulatory"] .regulatory-lots .table tr.is-food-safety td { font-weight: 600; }
+[data-view="regulatory"] .regulatory-lots .sparkline { width: 96px; height: 24px; }
+[data-view="regulatory"] .regulatory-charts .chart-card__body { height: 260px; }
+[data-view="regulatory"] .card__header .row { flex: none; }
+.badge-mini {
+  display: inline-block;
+  min-width: 18px;
+  padding: 0 4px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: .02em;
+  text-align: center;
+  vertical-align: middle;
+  background: var(--muted-soft);
+  color: var(--text-2);
+}
+.badge-mini--critical { background: var(--critical); color: #fff; }
+.progress { display: block; height: 6px; border-radius: 3px; background: var(--surface-2); overflow: hidden; }
+.progress__fill { display: block; height: 100%; background: var(--accent-strong); border-radius: 3px; }
+.progress--inline { display: inline-block; width: 48px; vertical-align: middle; margin-right: 4px; }
+
+@media (max-width: 767px) {
+  [data-view="regulatory"] .reg-clocks { grid-template-columns: 1fr; }
+  [data-view="regulatory"] .reg-subject { max-width: 200px; }
+  [data-view="regulatory"] .card__header { flex-wrap: wrap; }
+}

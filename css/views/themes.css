@@ -1,0 +1,106 @@
+/* L-Nutra · Voice of the Customer — Themes view styles (js/views/themes.js)
+   Grids for .themes-top / .themes-middle / .themes-terms / .themes-matrix live in css/views.css; this file
+   adds the subcategory panel, quadrant overlay, n-gram table, KWIC snippets and the topic × product heat-table. */
+
+[data-view="themes"] .themes-empty { margin-bottom: var(--sp-4); }
+[data-view="themes"] .themes-top > *, [data-view="themes"] .themes-middle > *, [data-view="themes"] .themes-terms > * { min-width: 0; }
+[data-view="themes"] .themes-controls { margin-bottom: 0; min-width: 0; }
+[data-view="themes"] .themes-controls .segmented { flex-wrap: wrap; }
+[data-view="themes"] .themes-sentence { font-size: var(--fs-14); line-height: var(--lh-body); }
+[data-view="themes"] .themes-terms .chart-card__body { height: 420px; }
+[data-view="themes"] .themes-matrix .chart-card__body { height: auto; min-height: 240px; }
+[data-view="themes"] .themes-matrix .chart-card__canvas-wrap { height: auto; }
+[data-view="themes"] .themes-matrix .html-chart { position: static; }
+
+/* HTML renderer hosted inside a chart card */
+.html-chart { position: absolute; inset: 0; overflow: auto; min-width: 0; }
+.html-chart[hidden] { display: none; }
+
+/* (a) subcategory panel */
+[data-view="themes"] .sub-panel { padding: var(--sp-3) var(--sp-4); }
+[data-view="themes"] .sub-panel__head { display: flex; align-items: center; gap: var(--sp-2); flex-wrap: wrap; margin-bottom: var(--sp-2); font-size: var(--fs-14); }
+[data-view="themes"] .sub-panel__list { display: flex; flex-direction: column; gap: 4px; list-style: none; margin: 0; padding: 0; }
+[data-view="themes"] .sub-panel__list li { display: block; min-width: 0; }
+[data-view="themes"] .sub-row {
+  display: grid;
+  grid-template-columns: minmax(120px, 1fr) minmax(0, 2fr) auto auto;
+  align-items: center;
+  gap: var(--sp-2);
+  width: 100%;
+  padding: 4px var(--sp-2);
+  border-radius: var(--radius-sm);
+  text-align: left;
+  color: var(--text);
+  font-size: var(--fs-13);
+}
+[data-view="themes"] .sub-row:hover { background: var(--surface-2); }
+[data-view="themes"] .sub-row__bar { height: 10px; border-radius: 3px; background: var(--surface-2); overflow: hidden; min-width: 0; }
+[data-view="themes"] .sub-row__fill { display: block; height: 100%; border-radius: 3px; }
+[data-view="themes"] .sub-row__n { color: var(--muted); font-size: var(--fs-12); white-space: nowrap; }
+
+/* (b) quadrant overlay on the bubble chart */
+[data-view="themes"] .quadrants { position: absolute; inset: 10px 14px 32px 48px; pointer-events: none; }
+[data-view="themes"] .quadrants[hidden] { display: none; }
+[data-view="themes"] .quadrants__label {
+  position: absolute;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: color-mix(in srgb, var(--surface) 80%, transparent);
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+[data-view="themes"] .quadrants__label--tl { top: 4px; left: 4px; }
+[data-view="themes"] .quadrants__label--tr { top: 4px; right: 4px; }
+[data-view="themes"] .quadrants__label--bl { bottom: 4px; left: 4px; }
+[data-view="themes"] .quadrants__label--br { bottom: 4px; right: 4px; color: var(--critical); }
+
+/* (f) recurring phrases table */
+[data-view="themes"] .ngram-card { display: flex; flex-direction: column; }
+[data-view="themes"] .ngram-body { padding: 0 var(--sp-3) var(--sp-3); min-height: 240px; }
+[data-view="themes"] .themes-table-wrap { max-height: 420px; }
+[data-view="themes"] .ngram-table td.wrap { white-space: normal; max-width: 420px; }
+[data-view="themes"] .ngram-caret { display: inline-block; width: 10px; color: var(--muted); }
+[data-view="themes"] .ngram-row[aria-expanded="true"] td { border-bottom-color: transparent; }
+[data-view="themes"] .ngram-detail-row td { height: auto; padding: 0 var(--sp-3) var(--sp-3) var(--sp-6); background: var(--surface-2); }
+[data-view="themes"] .kwic-list { display: flex; flex-direction: column; gap: 4px; padding-top: var(--sp-2); }
+[data-view="themes"] .kwic {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 4px var(--sp-2);
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-13);
+  line-height: 1.45;
+  color: var(--text-2);
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+[data-view="themes"] .kwic:hover { background: var(--surface); color: var(--text); }
+[data-view="themes"] .kwic mark { font-weight: 600; }
+
+/* (g) topic × product heat-table */
+[data-view="themes"] .themes-heat { overflow: auto; }
+[data-view="themes"] .heat-table { width: 100%; border-collapse: separate; border-spacing: 2px; font-size: var(--fs-13); font-variant-numeric: tabular-nums; }
+[data-view="themes"] .heat-table th { font-size: var(--fs-12); font-weight: 600; color: var(--muted); text-align: left; padding: 4px 6px; white-space: nowrap; }
+[data-view="themes"] .heat-table thead th.num { text-align: center; max-width: 92px; white-space: normal; line-height: 1.2; vertical-align: bottom; }
+[data-view="themes"] .heat-table tbody th { position: sticky; left: 0; background: var(--surface); }
+[data-view="themes"] .heat-table td { padding: 6px 8px; border-radius: 3px; text-align: right; min-width: 44px; }
+[data-view="themes"] .heat-table__cell { background: var(--surface-2); } /* text color comes from .ramp-step-N (components.css) */
+[data-view="themes"] .heat-table__cell--small { background-image: repeating-linear-gradient(135deg, transparent 0 3px, rgba(28, 29, 29, .14) 3px 4px); }
+:root[data-theme="dark"] [data-view="themes"] .heat-table__cell--small { background-image: repeating-linear-gradient(135deg, transparent 0 3px, rgba(242, 234, 229, .18) 3px 4px); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) [data-view="themes"] .heat-table__cell--small { background-image: repeating-linear-gradient(135deg, transparent 0 3px, rgba(242, 234, 229, .18) 3px 4px); }
+}
+[data-view="themes"] .heat-table__total, [data-view="themes"] .heat-table__totals td { color: var(--muted); }
+[data-view="themes"] .heat-table__totals th { border-top: 1px solid var(--border); }
+
+@media (max-width: 767px) {
+  [data-view="themes"] .themes-controls .segmented { flex: 1 1 auto; max-width: 100%; }
+  [data-view="themes"] .sub-row { grid-template-columns: minmax(0, 1fr) auto; }
+  [data-view="themes"] .sub-row__bar { grid-column: 1 / -1; }
+  [data-view="themes"] .ngram-table td.wrap { max-width: 200px; }
+  [data-view="themes"] .themes-terms .chart-card__body { height: 360px; }
+}

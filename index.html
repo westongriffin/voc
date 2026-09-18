@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="Voice of the Customer reporting for L-Nutra: executive briefing, triage inbox, analytics and forecasting over customer mail, reviews and surveys.">
+  <title>L-Nutra Voice of the Customer</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231E4036'/%3E%3Cpath d='M8 22V10h3v9h5v3H8zm10 0V10h3l4 7v-7h3v12h-3l-4-7v7h-3z' fill='%23F8F4F2'/%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Lora:wght@600;700&display=swap">
+
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/views.css">
+  <link rel="stylesheet" href="css/views/alerts.css">
+  <link rel="stylesheet" href="css/views/briefing.css">
+  <link rel="stylesheet" href="css/views/customers.css">
+  <link rel="stylesheet" href="css/views/inbox.css">
+  <link rel="stylesheet" href="css/views/methods.css">
+  <link rel="stylesheet" href="css/views/predict.css">
+  <link rel="stylesheet" href="css/views/products.css">
+  <link rel="stylesheet" href="css/views/regulatory.css">
+  <link rel="stylesheet" href="css/views/reports.css">
+  <link rel="stylesheet" href="css/views/settings.css">
+  <link rel="stylesheet" href="css/views/themes.css">
+  <link rel="stylesheet" href="css/views/trends.css">
+  <link rel="stylesheet" href="css/print.css">
+
+  <!-- Apply the remembered theme before first paint to avoid a flash. -->
+  <script>
+    (function () {
+      try {
+        var t = window.localStorage && window.localStorage.getItem('voc.theme');
+        if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+      } catch (e) { /* storage unavailable: fall back to system preference */ }
+    })();
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.1/chart.umd.min.js" onerror="window.VOC_CHARTS_FAILED=true"></script>
+</head>
+<body>
+  <a class="skip-link" href="#view">Skip to content</a>
+
+  <div id="charts-banner" class="banner" role="status" hidden>
+    <span>Chart library did not load. Every chart shows its table twin instead; check the network connection and reload to restore charts.</span>
+    <button type="button" class="icon-btn banner__close" aria-label="Dismiss" data-action="dismiss-banner">&times;</button>
+  </div>
+
+  <header class="app-header">
+    <a class="wordmark" href="#/briefing" aria-label="L-Nutra Voice of the Customer, go to briefing">
+      <span class="wordmark__brand">L-Nutra</span>
+      <span class="wordmark__dot" aria-hidden="true">&middot;</span>
+      <span class="wordmark__product">Voice of the Customer</span>
+    </a>
+    <span id="clock-badge" class="badge badge--clock" hidden></span>
+    <button type="button" id="connector-dot" class="conn conn--file" title="File mode: open through the sidecar to connect a mailbox">
+      <span class="conn__dot" aria-hidden="true"></span>
+      <span class="conn__label hide-phone">File mode</span>
+    </button>
+    <span class="header-spacer"></span>
+    <div class="header-search" role="search">
+      <input id="global-search" type="search" autocomplete="off" spellcheck="false"
+             placeholder="Search subject, text, sender, order (press /)" aria-label="Search records">
+    </div>
+    <div class="header-tools">
+      <button type="button" id="theme-toggle" class="icon-btn" aria-label="Theme: system" title="Theme: system (click to change)"></button>
+      <button type="button" id="help-toggle" class="icon-btn hide-phone" aria-label="Keyboard shortcuts" title="Keyboard shortcuts (?)">?</button>
+    </div>
+  </header>
+
+  <div class="app-body">
+    <nav id="rail" class="rail" aria-label="Primary"></nav>
+    <div class="app-content">
+      <div id="filter-bar" class="filter-bar"></div>
+      <main id="view" class="view" tabindex="-1" data-view=""></main>
+    </div>
+  </div>
+
+  <nav id="tabbar" class="tabbar" aria-label="Primary"></nav>
+
+  <div id="toast-root" class="toast-root" aria-live="polite" aria-relevant="additions"></div>
+  <div id="drawer-root"></div>
+  <div id="popover-root"></div>
+  <div id="modal-root"></div>
+
+  <noscript>
+    <div class="banner" style="margin:24px;border:1px solid #E6DED8;border-radius:10px">
+      L-Nutra Voice of the Customer needs JavaScript. The site runs entirely in the browser with no server round trips; enable JavaScript and reload.
+    </div>
+  </noscript>
+
+  <!-- Script order is the contract in SPEC §1. Classic scripts, no defer. -->
+  <script src="js/util.js"></script>
+  <script src="js/db.js"></script>
+  <script src="js/lexicon.js"></script>
+  <script src="js/rules.js"></script>
+  <script src="js/classify.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/live-data.js" onerror="window.VOC_LIVE = window.VOC_LIVE || []"></script>
+  <script src="js/store.js"></script>
+  <script src="js/analytics.js"></script>
+  <script src="js/predict.js"></script>
+  <script src="js/alerts.js"></script>
+  <script src="js/narrate.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/mime.js"></script>
+  <script src="js/importers.js"></script>
+  <script src="js/exporter.js"></script>
+  <script src="js/connector.js"></script>
+  <script src="js/report.js"></script>
+  <script src="js/router.js"></script>
+  <script src="js/views/briefing.js"></script>
+  <script src="js/views/trends.js"></script>
+  <script src="js/views/themes.js"></script>
+  <script src="js/views/products.js"></script>
+  <script src="js/views/customers.js"></script>
+  <script src="js/views/inbox.js"></script>
+  <script src="js/views/regulatory.js"></script>
+  <script src="js/views/predict.js"></script>
+  <script src="js/views/alerts.js"></script>
+  <script src="js/views/reports.js"></script>
+  <script src="js/views/methods.js"></script>
+  <script src="js/views/settings.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

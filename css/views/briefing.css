@@ -1,0 +1,125 @@
+/* L-Nutra · Voice of the Customer — Briefing view styles (supplements css/views.css; link after it in index.html) */
+
+/* Headline: 3–4 bold statements in the display face, a 3px accent rule on the left, no bullet glyphs.
+   ≤ 4 lines tall at 1440px (one line per statement); each statement wraps to ≤ 3 lines at 375px. */
+.briefing-lead {
+  list-style: none;
+  margin: 0 0 var(--sp-2);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.briefing-lead__item {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(20px, 1.4vw + 12px, 26px);
+  line-height: 1.25;
+  letter-spacing: -.005em;
+  color: var(--text);
+  padding-left: 14px;
+  border-left: 3px solid var(--accent);
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
+}
+
+[data-view="briefing"] .briefing-kpis { margin-top: var(--sp-5); }
+[data-view="briefing"] .briefing-charts .chart-card { min-width: 0; }
+
+/* KPI tile with a reason instead of a number (nps null → "No survey responses in range") */
+[data-view="briefing"] .kpi-strip > .kpi-tile { min-width: 0; }
+.kpi-tile__value--reason {
+  font-size: var(--fs-14) !important;
+  font-weight: 500;
+  color: var(--muted);
+  line-height: 1.3;
+  min-height: 2.6em;
+  display: flex;
+  align-items: center;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  text-align: left;
+}
+
+/* Alert feed inside a half-width card: pill + body on the first row, actions below the body */
+[data-view="briefing"] .alert-feed .alert-row { grid-template-columns: auto minmax(0, 1fr); }
+[data-view="briefing"] .alert-feed .alert-row__actions { grid-column: 2; justify-content: flex-start; }
+[data-view="briefing"] .alert-row__title, [data-view="briefing"] .alert-row__detail { overflow-wrap: anywhere; }
+
+/* Section cards (alerts, verbatims) */
+[data-view="briefing"] .briefing-bottom .card { display: flex; flex-direction: column; min-width: 0; }
+[data-view="briefing"] .briefing-bottom .card__header { align-items: baseline; }
+[data-view="briefing"] .card__link { font-size: var(--fs-13); font-weight: 500; white-space: nowrap; }
+[data-view="briefing"] .card__body { min-width: 0; }
+.briefing-foot { font-size: var(--fs-12); color: var(--muted); margin-top: var(--sp-3); line-height: 1.45; }
+
+/* Share-of-voice index badges (inside the chart card, above the footnote) */
+.sov-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-1) var(--sp-3);
+  padding: var(--sp-2) var(--sp-4) 0;
+}
+.sov-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--fs-12);
+  color: var(--text-2);
+  line-height: 20px;
+}
+.sov-badge__swatch { width: 10px; height: 10px; border-radius: 2px; flex: none; }
+.sov-badge__index {
+  font-variant-numeric: tabular-nums;
+  padding: 0 7px;
+  border-radius: var(--radius-pill);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text-2);
+}
+.sov-badge--flag .sov-badge__index { background: var(--warning-soft); border-color: var(--warning); color: var(--text); font-weight: 600; }
+.sov-badge--under .sov-badge__index { color: var(--muted); }
+
+/* Alert feed rows (the .alert-row grid comes from css/views.css) */
+[data-view="briefing"] .alert-row__body { min-width: 0; }
+.alert-row__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-1) var(--sp-3);
+  margin-top: 4px;
+  font-size: var(--fs-12);
+  color: var(--muted);
+}
+.alert-row__spark { display: inline-flex; line-height: 0; }
+.alert-row__spark svg { display: block; }
+.alert-row--critical { border-left: 4px solid var(--critical); }
+.alert-row--warning { border-left: 4px solid var(--warning); }
+.alert-row--info { border-left: 4px solid var(--info); }
+.alert-row__actions .btn--link { padding: 0 4px; }
+
+/* Verbatims */
+[data-view="briefing"] .verbatim {
+  cursor: pointer;
+  transition: border-color var(--dur) var(--ease), background var(--dur) var(--ease);
+}
+[data-view="briefing"] .verbatim:hover { background: var(--surface); border-color: var(--accent-strong); }
+[data-view="briefing"] .verbatim:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.verbatim__subject { font-weight: 600; margin-bottom: 4px; overflow-wrap: anywhere; }
+.verbatim__text { color: var(--text-2); line-height: 1.5; margin: 0; overflow-wrap: anywhere; }
+.verbatim--redacted .verbatim__text { font-style: italic; color: var(--muted); }
+.verbatim__open { margin-left: auto; color: var(--accent-strong); font-weight: 500; }
+.verbatim__date { font-variant-numeric: tabular-nums; }
+
+/* Phone */
+@media (max-width: 767px) {
+  [data-view="briefing"] .kpi-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  [data-view="briefing"] .alert-feed .alert-row { grid-template-columns: 1fr; }
+  [data-view="briefing"] .alert-feed .alert-row__actions { grid-column: auto; }
+  .sov-badges { padding-left: var(--sp-3); padding-right: var(--sp-3); }
+  .alert-row__meta { gap: var(--sp-1) var(--sp-2); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-view="briefing"] .verbatim { transition: none; }
+}

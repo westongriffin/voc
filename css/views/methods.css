@@ -1,0 +1,71 @@
+/* L-Nutra · Voice of the Customer — Methods view styles (js/views/methods.js)
+   Extends the [data-view="methods"] baseline in css/views.css. Reference typesetting: scannable tables, anchors, monospace ids. */
+
+[data-view="methods"] .methods-toc { display: flex; flex-wrap: wrap; gap: var(--sp-1) var(--sp-2); margin: calc(-1 * var(--sp-2)) 0 var(--sp-5); }
+[data-view="methods"] .methods-toc .chip { cursor: pointer; text-decoration: none; }
+[data-view="methods"] .methods-toc .chip:hover { border-color: var(--axis); background: var(--surface-2); }
+
+[data-view="methods"] .methods-section { scroll-margin-top: calc(var(--header-h) + var(--filter-h) + var(--sp-3)); min-width: 0; }
+[data-view="methods"] .methods-section__title { font-family: var(--font-display); font-weight: 700; font-size: var(--fs-20); letter-spacing: -.005em; }
+[data-view="methods"] .methods-section__title:focus { outline: none; }
+[data-view="methods"] .methods-section .card__header { margin-bottom: var(--sp-2); }
+[data-view="methods"] .methods-count { margin: 0 0 var(--sp-3); }
+[data-view="methods"] .methods-section .table-wrap { overflow-x: auto; }
+[data-view="methods"] .methods-section .table td.wrap { white-space: normal; min-width: 220px; max-width: 520px; }
+[data-view="methods"] .methods-mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: var(--fs-12); background: var(--surface-2); padding: 1px 5px; border-radius: 4px; color: var(--text); white-space: nowrap; }
+[data-view="methods"] .methods-expected, [data-view="methods"] .methods-detail { font-size: var(--fs-12); color: var(--text-2); white-space: normal; }
+
+/* Stat strip (lexicon / rules / classifier) */
+[data-view="methods"] .methods-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: var(--sp-3); margin-bottom: var(--sp-4); }
+[data-view="methods"] .methods-stat { padding: var(--sp-3); border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--surface-2); min-width: 0; }
+[data-view="methods"] .methods-stat__value { font-size: var(--fs-20); font-weight: 600; line-height: 1.2; font-variant-numeric: tabular-nums; }
+[data-view="methods"] .methods-stat__label { font-size: var(--fs-12); font-weight: 600; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); margin-top: 2px; }
+[data-view="methods"] .methods-stat__sub { font-size: var(--fs-12); color: var(--text-2); margin-top: 2px; }
+
+/* Pipeline steps */
+[data-view="methods"] .pipeline-steps { list-style: none; counter-reset: stage; margin: 0 0 var(--sp-3); padding: 0; display: flex; flex-direction: column; gap: var(--sp-2); }
+[data-view="methods"] .pipeline-step { counter-increment: stage; position: relative; padding: var(--sp-3) var(--sp-3) var(--sp-3) 52px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--surface); }
+[data-view="methods"] .pipeline-step::before {
+  content: counter(stage);
+  position: absolute; left: var(--sp-3); top: var(--sp-3);
+  width: 26px; height: 26px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--accent-soft); color: var(--accent-strong);
+  font-weight: 700; font-size: var(--fs-13); font-variant-numeric: tabular-nums;
+}
+[data-view="methods"] .pipeline-step__head { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-2); margin-bottom: 4px; }
+[data-view="methods"] .pipeline-step__title { font-weight: 600; font-size: var(--fs-14); }
+[data-view="methods"] .pipeline-step__text { margin: 0; font-size: var(--fs-13); color: var(--text-2); line-height: var(--lh-body); max-width: 90ch; }
+[data-view="methods"] .pipeline-step__thresholds { display: flex; flex-wrap: wrap; gap: var(--sp-1); margin-top: var(--sp-2); }
+[data-view="methods"] .pipeline-step__thresholds .tag { font-variant-numeric: tabular-nums; height: auto; min-height: 20px; padding-top: 1px; padding-bottom: 1px; white-space: normal; overflow-wrap: anywhere; line-height: 1.35; max-width: 100%; }
+
+/* Planted-event results */
+[data-view="methods"] .methods-result { border: 1px solid transparent; font-weight: 600; }
+[data-view="methods"] .methods-result--detected { background: var(--good-soft); color: var(--good-text); }
+[data-view="methods"] .methods-result--missed { background: var(--critical-soft); color: var(--critical); }
+[data-view="methods"] .methods-result--unmapped, [data-view="methods"] .methods-result--unavailable { background: var(--muted-soft); color: var(--muted); }
+
+/* Provenance */
+[data-view="methods"] .methods-kv { grid-template-columns: minmax(150px, max-content) 1fr; margin-bottom: var(--sp-3); }
+[data-view="methods"] .methods-kv dd { font-variant-numeric: tabular-nums; }
+
+/* Confidence rules */
+[data-view="methods"] .methods-confidence { display: flex; flex-direction: column; gap: var(--sp-2); margin-bottom: var(--sp-3); }
+[data-view="methods"] .methods-rule { padding: var(--sp-3); border: 1px solid var(--border); border-radius: var(--radius-sm); }
+[data-view="methods"] .methods-rule__head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--sp-2); margin-bottom: 4px; }
+[data-view="methods"] .methods-rule__title { font-weight: 600; font-size: var(--fs-14); }
+[data-view="methods"] .methods-rule__text { margin: 0; font-size: var(--fs-13); color: var(--text-2); line-height: var(--lh-body); max-width: 90ch; }
+
+@media (prefers-reduced-motion: reduce) {
+  [data-view="methods"] .methods-section { scroll-behavior: auto; }
+}
+
+/* Phone */
+@media (max-width: 767px) {
+  [data-view="methods"] .methods-stats { grid-template-columns: 1fr 1fr; }
+  [data-view="methods"] .pipeline-step { padding-left: 44px; }
+  [data-view="methods"] .pipeline-step::before { width: 22px; height: 22px; font-size: var(--fs-12); left: var(--sp-2); }
+  [data-view="methods"] .methods-section .table td.wrap { min-width: 180px; }
+  [data-view="methods"] .methods-kv { grid-template-columns: 1fr; gap: 2px; }
+  [data-view="methods"] .methods-kv dt { margin-top: var(--sp-2); }
+}

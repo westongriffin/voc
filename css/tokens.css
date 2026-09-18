@@ -1,0 +1,233 @@
+/* L-Nutra · Voice of the Customer — design tokens (SPEC §10)
+   Light is the default. Dark is redefined twice: once for system preference
+   (unless the user pinned light) and once for an explicit data-theme="dark". */
+
+:root {
+  color-scheme: light;
+
+  /* Surfaces and text */
+  --bg: #F8F4F2;
+  --surface: #FFFFFF;
+  --surface-2: #F2EAE5;
+  --text: #1C1D1D;
+  --text-2: #3F4A46;
+  --muted: #5F6A66;
+  --border: #E6DED8;
+
+  /* Brand */
+  --brand: #1E4036;
+  --accent: #56A511;
+  --accent-strong: #3B6D11;
+  --accent-soft: #EAF4DF;
+  --focus: #7C3AED;
+
+  /* Charts */
+  --grid: #ECE6E0;
+  --axis: #C9C0B8;
+  --s1: #56A511;
+  --s2: #E87BA4;
+  --s3: #2A78D6;
+  --s4: #EB6834;
+  --s5: #1BAF7A;
+  --s6: #EDA100;
+  --s7: #4A3AA7;
+  --s8: #E34948;
+  --s-other: #9AA39E;
+  --seq-1: #EAF4DF;
+  --seq-2: #CFE6B8;
+  --seq-3: #B0D68F;
+  --seq-4: #8FC466;
+  --seq-5: #6DB13D;
+  --seq-6: #56A511;
+  --seq-7: #3F7F0D;
+  --seq-8: #2C5A0B;
+  --div-neg: #E34948;
+  --div-mid: #ECE7E1;
+  --div-pos: #2A78D6;
+
+  /* Status — never themed, never used as series colors */
+  --good: #0CA30C;
+  --warning: #FAB219;
+  --serious: #EC835A;
+  --critical: #D03B3B;
+  --good-text: #006300;
+  /* Text-safe status colors: --serious is a fill/stripe/dot color (2.6:1 on white); text uses this (6.8:1 light, 7.7:1 dark) */
+  --serious-text: #9A3E1A;
+  --info: #2E6FB8;
+
+  /* Soft tints for pills and stripes */
+  --good-soft: rgba(12, 163, 12, .12);
+  --warning-soft: rgba(250, 178, 25, .18);
+  --serious-soft: rgba(236, 131, 90, .16);
+  --critical-soft: rgba(208, 59, 59, .12);
+  --info-soft: rgba(46, 111, 184, .12);
+  --muted-soft: rgba(95, 106, 102, .14);
+  --focus-soft: rgba(124, 58, 237, .12);
+
+  /* Type */
+  --font-ui: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Lora", Georgia, "Times New Roman", serif;
+  --fs-12: 12px;
+  --fs-13: 13px;
+  --fs-14: 14px;
+  --fs-16: 16px;
+  --fs-20: 20px;
+  --fs-28: 28px;
+  --fs-36: 36px;
+  --lh-tight: 1.2;
+  --lh-body: 1.45;
+
+  /* Spacing */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 20px;
+  --sp-6: 24px;
+  --sp-8: 32px;
+  --sp-10: 40px;
+  --gutter: 24px;
+
+  /* Shape */
+  --radius: 10px;
+  --radius-sm: 6px;
+  --radius-pill: 999px;
+
+  /* Elevation (light only; dark clears these) */
+  --shadow-1: 0 1px 2px rgba(28, 29, 29, .06), 0 1px 3px rgba(28, 29, 29, .04);
+  --shadow-2: 0 6px 20px rgba(28, 29, 29, .10), 0 2px 6px rgba(28, 29, 29, .06);
+  --shadow-3: 0 18px 48px rgba(28, 29, 29, .18);
+
+  /* Layout */
+  --header-h: 56px;
+  --rail-w: 220px;
+  --rail-w-compact: 64px;
+  --tabbar-h: 56px;
+  --content-max: 1440px;
+  --filter-h: 52px;
+
+  /* Motion */
+  --dur: 150ms;
+  --ease: cubic-bezier(.2, .7, .2, 1);
+
+  /* Z scale */
+  --z-rail: 10;
+  --z-filter: 15;
+  --z-header: 20;
+  --z-tabbar: 25;
+  --z-popover: 40;
+  --z-drawer: 50;
+  --z-modal: 55;
+  --z-toast: 60;
+}
+
+/* Dark: system preference, unless the user pinned light */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #0F1A16;
+    --surface: #16241F;
+    --surface-2: #1D2E28;
+    --text: #F2EAE5;
+    --text-2: #D6D0C8;
+    --muted: #9FB3A8;
+    --border: #2A3B33;
+    --brand: #CDE3D3;
+    --accent: #7CC242;
+    --accent-strong: #56A511;
+    --accent-soft: #1F3A1A;
+    --focus: #A78BFA;
+    --grid: #24342D;
+    --axis: #3A4A42;
+    --s1: #56A511;
+    --s2: #D55181;
+    --s3: #3987E5;
+    --s4: #D95926;
+    --s5: #199E70;
+    --s6: #C98500;
+    --s7: #9085E9;
+    --s8: #E66767;
+    --s-other: #6F7F77;
+    --seq-1: rgba(124, 194, 66, .12);
+    --seq-2: rgba(124, 194, 66, .22);
+    --seq-3: rgba(124, 194, 66, .34);
+    --seq-4: rgba(124, 194, 66, .46);
+    --seq-5: rgba(124, 194, 66, .58);
+    --seq-6: rgba(124, 194, 66, .70);
+    --seq-7: rgba(124, 194, 66, .82);
+    --seq-8: rgba(124, 194, 66, .95);
+    --div-neg: #E66767;
+    --div-mid: #3A4A42;
+    --div-pos: #3987E5;
+    --good-text: #0CA30C;
+    --serious-text: #F0A07E;
+    --info: #7FA6E0;
+    --good-soft: rgba(12, 163, 12, .22);
+    --warning-soft: rgba(250, 178, 25, .22);
+    --serious-soft: rgba(236, 131, 90, .22);
+    --critical-soft: rgba(208, 59, 59, .24);
+    --info-soft: rgba(127, 166, 224, .18);
+    --muted-soft: rgba(159, 179, 168, .16);
+    --focus-soft: rgba(167, 139, 250, .18);
+    --shadow-1: none;
+    --shadow-2: none;
+    --shadow-3: 0 18px 48px rgba(0, 0, 0, .5);
+  }
+}
+
+/* Dark: explicit choice */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0F1A16;
+  --surface: #16241F;
+  --surface-2: #1D2E28;
+  --text: #F2EAE5;
+  --text-2: #D6D0C8;
+  --muted: #9FB3A8;
+  --border: #2A3B33;
+  --brand: #CDE3D3;
+  --accent: #7CC242;
+  --accent-strong: #56A511;
+  --accent-soft: #1F3A1A;
+  --focus: #A78BFA;
+  --grid: #24342D;
+  --axis: #3A4A42;
+  --s1: #56A511;
+  --s2: #D55181;
+  --s3: #3987E5;
+  --s4: #D95926;
+  --s5: #199E70;
+  --s6: #C98500;
+  --s7: #9085E9;
+  --s8: #E66767;
+  --s-other: #6F7F77;
+  --seq-1: rgba(124, 194, 66, .12);
+  --seq-2: rgba(124, 194, 66, .22);
+  --seq-3: rgba(124, 194, 66, .34);
+  --seq-4: rgba(124, 194, 66, .46);
+  --seq-5: rgba(124, 194, 66, .58);
+  --seq-6: rgba(124, 194, 66, .70);
+  --seq-7: rgba(124, 194, 66, .82);
+  --seq-8: rgba(124, 194, 66, .95);
+  --div-neg: #E66767;
+  --div-mid: #3A4A42;
+  --div-pos: #3987E5;
+  --good-text: #0CA30C;
+  --serious-text: #F0A07E;
+  --info: #7FA6E0;
+  --good-soft: rgba(12, 163, 12, .22);
+  --warning-soft: rgba(250, 178, 25, .22);
+  --serious-soft: rgba(236, 131, 90, .22);
+  --critical-soft: rgba(208, 59, 59, .24);
+  --info-soft: rgba(127, 166, 224, .18);
+  --muted-soft: rgba(159, 179, 168, .16);
+  --focus-soft: rgba(167, 139, 250, .18);
+  --shadow-1: none;
+  --shadow-2: none;
+  --shadow-3: 0 18px 48px rgba(0, 0, 0, .5);
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+}

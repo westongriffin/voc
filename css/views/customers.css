@@ -1,0 +1,58 @@
+/* L-Nutra · Voice of the Customer — Customers view styles (js/views/customers.js)
+   Layout only; colors come from tokens. Loaded after css/views.css. */
+
+[data-view="customers"] .customers-segments-section .section-title { margin-top: 0; }
+[data-view="customers"] .customers-segments { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--sp-4); align-items: start; }
+
+/* Cancellation-risk table */
+[data-view="customers"] .customers-risk__header { align-items: flex-end; margin-bottom: var(--sp-2); }
+[data-view="customers"] .customers-risk__title { margin: 0 0 2px; }
+[data-view="customers"] .customers-risk__badges { display: flex; align-items: center; gap: var(--sp-2); flex-wrap: wrap; justify-content: flex-end; }
+[data-view="customers"] .customers-risk__explain { margin: 0 0 var(--sp-3); max-width: 90ch; }
+[data-view="customers"] .customers-risk__caveats { margin-top: var(--sp-2); max-width: 110ch; line-height: 1.45; }
+[data-view="customers"] .customers-risk .table-wrap { max-height: 560px; }
+[data-view="customers"] .customers-risk .table td.wrap { white-space: normal; max-width: 360px; }
+
+.method-badge__dot { width: 8px; height: 8px; border-radius: 50%; background: var(--muted); flex: none; }
+.method-badge--fitted .method-badge__dot { background: var(--good); }
+.method-badge--heuristic .method-badge__dot { background: var(--warning); }
+
+[data-view="customers"] .customer-cell { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+[data-view="customers"] .customer-cell__name { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 220px; }
+[data-view="customers"] .customer-cell__meta { white-space: nowrap; }
+[data-view="customers"] .score-cell { display: inline-flex; align-items: center; gap: var(--sp-2); justify-content: flex-end; }
+[data-view="customers"] .score-cell__num { font-weight: 600; font-variant-numeric: tabular-nums; min-width: 2ch; text-align: right; }
+[data-view="customers"] .reasons { display: flex; flex-wrap: wrap; gap: 4px; }
+[data-view="customers"] .reasons .tag { height: auto; padding: 2px 7px; white-space: normal; line-height: 1.3; }
+
+/* Middle row: histogram + cohorts; bottom row: practices + regions */
+[data-view="customers"] .customers-middle { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-4); margin-top: var(--sp-5); align-items: start; }
+[data-view="customers"] .customers-bottom { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: var(--sp-4); margin-top: var(--sp-5); align-items: start; }
+
+/* HTML cards (heatmap, tables) share the chart-card header rhythm */
+[data-view="customers"] .html-card .card__header { align-items: flex-start; }
+[data-view="customers"] .html-card__body { min-width: 0; overflow: auto; }
+[data-view="customers"] .html-card__foot { margin-top: var(--sp-3); }
+[data-view="customers"] .html-card .table-wrap { max-height: 420px; }
+
+/* Cohort heatmap */
+[data-view="customers"] .cohort-heatmap { min-width: 420px; }
+[data-view="customers"] .cohort-heatmap .voc-heatmap__row { min-width: 120px; }
+[data-view="customers"] .cohort-heatmap .voc-heatmap__cell { min-height: 26px; }
+[data-view="customers"] .cohort-heatmap .voc-heatmap__cell.is-unobserved {
+  background: var(--surface-2);
+  background-image: repeating-linear-gradient(135deg, transparent 0 3px, var(--border) 3px 4px);
+}
+
+@media (max-width: 1023px) {
+  [data-view="customers"] .customers-segments { grid-template-columns: 1fr; }
+  [data-view="customers"] .customers-middle, [data-view="customers"] .customers-bottom { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 767px) {
+  [data-view="customers"] .customers-risk__header { align-items: flex-start; flex-direction: column; }
+  [data-view="customers"] .customers-risk__badges { justify-content: flex-start; }
+  [data-view="customers"] .customers-risk .table-wrap { max-height: none; }
+  [data-view="customers"] .customer-cell__name { max-width: 160px; }
+  [data-view="customers"] .cohort-heatmap { min-width: 360px; }
+}

@@ -1,0 +1,136 @@
+/* L-Nutra · Voice of the Customer — Inbox view styles (SPEC §5.6)
+   Complements css/views.css (.inbox-strip, .inbox-views, .inbox-bulk, .inbox-table, .record-drawer*, .checklist, .countdown). */
+
+[data-view="inbox"] .inbox-header-actions { align-items: center; }
+[data-view="inbox"] .inbox-restricted-badge { background: var(--warning-soft); border-color: transparent; }
+
+/* Command strip */
+[data-view="inbox"] .inbox-strip { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+[data-view="inbox"] .command-tile__n { font-size: 11px; color: var(--muted); font-variant-numeric: tabular-nums; }
+[data-view="inbox"] .command-tile:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+/* Saved views */
+[data-view="inbox"] .inbox-views__label { margin-right: var(--sp-1); }
+[data-view="inbox"] .inbox-views .chip[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent-strong); color: var(--brand); }
+[data-view="inbox"] .inbox-views .chip .chip__x { margin-left: 2px; }
+.inbox-saveview { min-width: 260px; }
+.inbox-saveview .field .label { margin: 0; }
+.popover--wide { min-width: 320px; max-width: min(460px, calc(100vw - 32px)); }
+
+/* Bulk bar */
+[data-view="inbox"] .inbox-bulk[hidden] { display: none; }
+[data-view="inbox"] .inbox-bulk .select { max-width: 180px; }
+[data-view="inbox"] .inbox-bulk__tag { width: 160px; }
+[data-view="inbox"] .inbox-bulk__taggroup { flex-wrap: nowrap; }
+
+/* Table cells. Fixed caps on the three text columns keep the default table (through Assignee) inside its card at
+   1440px; the Escalation / Confidence columns sit behind the "More columns" switch (.inbox-table--more). */
+[data-view="inbox"] .inbox-table .table th, [data-view="inbox"] .inbox-table .table td { padding-left: var(--sp-2); padding-right: var(--sp-2); }
+[data-view="inbox"] .inbox-table .table th.is-sortable { padding-right: calc(var(--sp-2) + 2px); }
+[data-view="inbox"] .inbox-table .table td.inbox-subject { max-width: 230px; }
+[data-view="inbox"] .inbox-subject__text { display: inline-block; max-width: 200px; vertical-align: middle; }
+[data-view="inbox"] .inbox-table .table td.inbox-col-product { max-width: 130px; }
+[data-view="inbox"] .inbox-table .table td.inbox-col-category { max-width: 190px; }
+[data-view="inbox"] .inbox-table .table td.inbox-col-assignee { max-width: 110px; }
+[data-view="inbox"] .inbox-cell__text { display: inline-block; max-width: 100%; vertical-align: middle; }
+[data-view="inbox"] .inbox-table--more .table td.inbox-subject { max-width: 220px; }
+[data-view="inbox"] .inbox-table--more .inbox-subject__text { max-width: 190px; }
+[data-view="inbox"] .inbox-table--more .table td.inbox-col-category { max-width: 190px; }
+/* Weekday × hour slot chip (heatmap drill from Trends): a view-local post-filter on the table rows. */
+[data-view="inbox"] .inbox-slot { display: flex; align-items: center; gap: var(--sp-2); flex-wrap: wrap; margin-bottom: var(--sp-3); font-size: var(--fs-13); }
+[data-view="inbox"] .inbox-slot[hidden] { display: none; }
+[data-view="inbox"] .inbox-slot .chip--value { background: var(--accent-soft); border-color: var(--accent-strong); }
+[data-view="inbox"] .inbox-badges { padding-right: 0 !important; }
+.badge-mini {
+  display: inline-block;
+  min-width: 18px;
+  padding: 0 4px;
+  margin-right: 3px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: .02em;
+  text-align: center;
+  vertical-align: middle;
+  background: var(--muted-soft);
+  color: var(--text-2);
+}
+.badge-mini--critical { background: var(--critical); color: #fff; }
+.badge-mini--serious { background: var(--serious-soft); color: var(--serious-text); }
+.badge-mini--muted { background: var(--muted-soft); color: var(--muted); }
+.inbox-age { font-variant-numeric: tabular-nums; }
+.inbox-age--late { color: var(--critical); font-weight: 600; }
+.inbox-score { font-variant-numeric: tabular-nums; font-weight: 600; }
+.inbox-score--watch { color: var(--text); }
+.inbox-score--high { color: var(--serious-text); }
+.inbox-score--critical { color: var(--critical); }
+.inbox-score--low { color: var(--muted); font-weight: 500; }
+.conf-dot {
+  display: inline-block;
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: var(--muted);
+  vertical-align: middle;
+}
+.conf-dot--high { background: var(--good); }
+.conf-dot--medium { background: var(--warning); }
+.conf-dot--low { background: var(--critical); }
+.conf-dot--review { box-shadow: 0 0 0 2px var(--surface), 0 0 0 3px var(--critical); }
+
+/* Drawer */
+.drawer-section { padding: var(--sp-3) var(--sp-4); border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); }
+.drawer-section__head { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-2); margin-bottom: var(--sp-2); flex-wrap: wrap; }
+.drawer-section__title { font-size: var(--fs-13); font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); margin: 0; }
+.drawer-section--regulatory { border-color: var(--serious); }
+.drawer-section--regulatory.is-due { border-color: var(--critical); background: var(--critical-soft); }
+.record-drawer__from { color: var(--text-2); }
+.record-drawer__header .row { align-items: center; }
+.inbox-marklegend { margin-top: var(--sp-2); }
+.inbox-marklegend mark { padding: 0 4px; }
+mark.mark--safety { background: var(--serious-soft); }
+mark.mark--entity { background: var(--info-soft); text-decoration: underline dotted; }
+.inbox-thread { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; }
+.inbox-thread__item { display: flex; align-items: center; gap: var(--sp-2); flex-wrap: wrap; }
+.inbox-thread__link { text-align: left; white-space: normal; }
+.inbox-tags { align-items: center; }
+.inbox-tags .tag { gap: 4px; }
+.inbox-tags .tag .chip__x { width: 16px; height: 16px; }
+.inbox-tags__input { width: auto; min-width: 140px; flex: 1; }
+.inbox-notes { max-height: 260px; overflow: auto; }
+.inbox-note { padding: var(--sp-2) var(--sp-3); border-radius: var(--radius-sm); background: var(--surface-2); }
+.inbox-note__text { white-space: pre-wrap; overflow-wrap: anywhere; font-size: var(--fs-13); }
+.inbox-note__form { align-items: flex-start; flex-wrap: nowrap; }
+.inbox-note__form .textarea { flex: 1; min-height: 56px; }
+.inbox-history { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 4px; }
+.inbox-history li { display: flex; align-items: center; gap: var(--sp-2); min-width: 0; }
+.inbox-history .btn--link { min-width: 0; text-align: left; }
+.inbox-reasons { gap: 4px; }
+.inbox-risk__score { font-size: var(--fs-20); font-weight: 600; font-variant-numeric: tabular-nums; line-height: 1; }
+.inbox-risk__score--bad { color: var(--critical); }
+.inbox-pred { padding-bottom: var(--sp-2); border-bottom: 1px solid var(--border); margin-bottom: var(--sp-2); }
+.inbox-pred:last-child { border-bottom: 0; margin-bottom: 0; padding-bottom: 0; }
+.inbox-audit__row { display: grid; grid-template-columns: max-content 1fr; gap: var(--sp-2); }
+.inbox-drawer-foot { width: 100%; }
+.inbox-drawer-foot .kbd { margin-left: 4px; }
+.progress { display: block; height: 6px; border-radius: 3px; background: var(--surface-2); overflow: hidden; }
+.progress__fill { display: block; height: 100%; background: var(--accent-strong); border-radius: 3px; transition: width var(--dur) var(--ease); }
+.progress--inline { display: inline-block; width: 48px; vertical-align: middle; margin-right: 4px; }
+
+/* Tablet */
+@media (max-width: 1023px) {
+  [data-view="inbox"] .inbox-strip { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* Phone */
+@media (max-width: 767px) {
+  [data-view="inbox"] .inbox-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  [data-view="inbox"] .inbox-bulk .select, [data-view="inbox"] .inbox-bulk__tag { max-width: none; width: 100%; }
+  [data-view="inbox"] .inbox-bulk__taggroup { width: 100%; }
+  [data-view="inbox"] .inbox-table .table-wrap { max-height: 70vh; }
+  [data-view="inbox"] .inbox-subject__text { max-width: 180px; }
+  .inbox-drawer-foot { flex-wrap: wrap; }
+  .inbox-drawer-nav { width: 100%; }
+  .inbox-note__form { flex-wrap: wrap; }
+  .inbox-audit__row { grid-template-columns: 1fr; gap: 0; }
+}

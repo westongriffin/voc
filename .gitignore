@@ -1,0 +1,14 @@
+# macOS / editor
+.DS_Store
+.claude/
+# runtime and secrets — never commit
+server/config.json
+js/live-data.js
+*.env
+.env
+# python
+__pycache__/
+*.pyc
+# stray exports and scratch
+lnutra-voc-*.csv
+*.log

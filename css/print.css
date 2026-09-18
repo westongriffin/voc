@@ -1,0 +1,73 @@
+/* L-Nutra · Voice of the Customer — print (SPEC §10) */
+@media print {
+  @page { size: Letter; margin: 14mm; }
+
+  /* Force light tokens regardless of theme or system preference */
+  :root, :root[data-theme="dark"], :root:not([data-theme="light"]) {
+    color-scheme: light;
+    --bg: #FFFFFF;
+    --surface: #FFFFFF;
+    --surface-2: #F2EAE5;
+    --text: #1C1D1D;
+    --text-2: #3F4A46;
+    --muted: #5F6A66;
+    --border: #E6DED8;
+    --brand: #1E4036;
+    --accent: #56A511;
+    --accent-strong: #3B6D11;
+    --accent-soft: #EAF4DF;
+    --grid: #ECE6E0;
+    --axis: #C9C0B8;
+    --s1: #56A511; --s2: #E87BA4; --s3: #2A78D6; --s4: #EB6834;
+    --s5: #1BAF7A; --s6: #EDA100; --s7: #4A3AA7; --s8: #E34948;
+    --s-other: #9AA39E;
+    --seq-1: #EAF4DF; --seq-2: #CFE6B8; --seq-3: #B0D68F; --seq-4: #8FC466;
+    --seq-5: #6DB13D; --seq-6: #56A511; --seq-7: #3F7F0D; --seq-8: #2C5A0B;
+    --div-neg: #E34948; --div-mid: #ECE7E1; --div-pos: #2A78D6;
+    --good-text: #006300;
+    --serious-text: #9A3E1A;
+    --info: #2E6FB8;
+    --shadow-1: none;
+    --shadow-2: none;
+    --shadow-3: none;
+  }
+
+  html, body { background: #fff !important; color: #1C1D1D !important; font-size: 11pt; }
+
+  /* Chrome only: nav, filters, controls */
+  .app-header, .rail, .tabbar, .filter-bar, .skip-link, .banner,
+  .toast-root, .drawer-backdrop, .drawer, .popover, .modal-backdrop,
+  .btn, button, .segmented, .chart-card__tools, .view-header__actions, .view-actions, .how,
+  .table__footer, .dropzone, .command-strip, .inbox-views, .inbox-bulk, noscript { display: none !important; }
+
+  .app-body { display: block; min-height: 0; }
+  .app-content { padding: 0; }
+  .view { max-width: none; padding: 0; margin: 0; min-height: 0; }
+
+  .card, .kpi-tile, .chart-card, .insight-card, .report__section, .report .card,
+  .alert-row, .verbatim, .table-wrap, tr { break-inside: avoid; page-break-inside: avoid; }
+  h1, h2, h3, .view-title, .section-title { break-after: avoid; page-break-after: avoid; }
+
+  .card, .kpi-tile, .chart-card, .insight-card, .report { box-shadow: none !important; border-color: #C9C0B8 !important; }
+  .table-wrap { max-height: none !important; overflow: visible !important; border: 0; }
+  .table th { position: static; box-shadow: none; border-bottom: 1px solid #C9C0B8; }
+  .table td, .table th { height: auto; padding: 4px 6px; }
+  .chart-card__body { height: auto !important; min-height: 220px; }
+  .chart-card__canvas-wrap canvas { max-height: 260px; }
+  .chart-card__body.is-table .table-twin { height: auto; overflow: visible; }
+
+  .report { max-width: none; border: 0; padding: 0; border-radius: 0; }
+  .report h2 { break-after: avoid; }
+  .report table { break-inside: auto; }
+  .report tr { break-inside: avoid; }
+
+  a { color: inherit; text-decoration: none; }
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 9pt; color: #5F6A66; }
+  mark { background: #F2EAE5; color: inherit; }
+  .pill { border: 1px solid #C9C0B8; background: transparent !important; color: #1C1D1D !important; }
+  .pill::before { display: none; }
+  .insight-card::before { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  .heatmap__cell, .seq-1, .seq-2, .seq-3, .seq-4, .seq-5, .seq-6, .seq-7, .seq-8 {
+    print-color-adjust: exact; -webkit-print-color-adjust: exact;
+  }
+}

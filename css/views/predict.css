@@ -1,0 +1,85 @@
+/* L-Nutra · Voice of the Customer — Forecast Lab view styles (js/views/predict.js)
+   Extends the [data-view="predict"] baseline in css/views.css. Tokens only; no hard-coded colors. */
+
+[data-view="predict"] .lab-asof { align-items: center; gap: var(--sp-2); }
+[data-view="predict"] .lab-asof .label { margin: 0; }
+[data-view="predict"] .how__body { padding: 0; border: 0; background: transparent; max-width: none; }
+[data-view="predict"] .how__body .lab-scope { margin: 0; }
+
+/* Model cards */
+[data-view="predict"] .model-cards { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); align-items: stretch; }
+[data-view="predict"] .model-card { display: flex; flex-direction: column; gap: var(--sp-2); }
+[data-view="predict"] .model-card__head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--sp-2); }
+[data-view="predict"] .model-card__head .card__title { font-size: var(--fs-14); }
+[data-view="predict"] .model-card__kv { grid-template-columns: minmax(92px, max-content) 1fr; gap: 4px var(--sp-3); font-size: var(--fs-12); }
+[data-view="predict"] .model-card__text { font-size: var(--fs-13); color: var(--text-2); line-height: var(--lh-body); margin: 0; }
+[data-view="predict"] .model-card__caveats { margin: 0; padding-left: 16px; font-size: var(--fs-12); color: var(--muted); }
+[data-view="predict"] .model-card__caveats li + li { margin-top: 2px; }
+[data-view="predict"] .model-card__empty .empty-state { padding: var(--sp-4) 0; }
+
+/* Parameter sidebar */
+[data-view="predict"] .lab-controls .card__subtitle { margin-bottom: var(--sp-2); }
+[data-view="predict"] .lab-slider { gap: 2px; }
+[data-view="predict"] .lab-slider .label { margin: 0; text-transform: none; letter-spacing: 0; font-size: var(--fs-13); font-weight: 600; color: var(--text); }
+[data-view="predict"] .lab-slider input[type="range"] { width: 100%; accent-color: var(--accent-strong); margin: 4px 0; cursor: pointer; }
+[data-view="predict"] .lab-slider output { font-variant-numeric: tabular-nums; font-size: var(--fs-13); color: var(--text-2); }
+[data-view="predict"] .lab-slider .field__hint { line-height: 1.35; }
+[data-view="predict"] .lab-controls__actions { margin-top: var(--sp-2); }
+[data-view="predict"] .lab-controls .btn[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent-strong); color: var(--accent-strong); }
+[data-view="predict"] .lab-fit { margin: 0; line-height: 1.4; }
+
+/* Forecast column */
+[data-view="predict"] .lab-forecast-lower { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: var(--sp-4); }
+[data-view="predict"] .lab-coverage__body { overflow-x: auto; }
+[data-view="predict"] .lab-coverage tr.is-total td { font-weight: 600; border-top: 2px solid var(--border); }
+
+/* Section heads shared by anomalies / emerging / backtest */
+[data-view="predict"] .lab-section-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: var(--sp-2) var(--sp-4); margin-bottom: var(--sp-3); }
+[data-view="predict"] .lab-section-head .section-title { margin: 0 0 var(--sp-1); }
+[data-view="predict"] .lab-section-head p { margin: 0; max-width: 78ch; }
+[data-view="predict"] .lab-anomaly-grid { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: var(--sp-4); }
+[data-view="predict"] .lab-events .table-wrap, [data-view="predict"] .lab-emerging .table-wrap, [data-view="predict"] .lab-backtest .table-wrap { overflow-x: auto; }
+[data-view="predict"] .lab-unit-chips { display: flex; flex-wrap: wrap; gap: var(--sp-1); }
+[data-view="predict"] .lab-unit-chips .chip { cursor: pointer; }
+
+/* Status / result pills (status tokens, text always present) */
+[data-view="predict"] .lab-status, [data-view="predict"] .lab-result { border: 1px solid transparent; font-weight: 600; }
+[data-view="predict"] .lab-status--new { background: var(--critical-soft); color: var(--critical); }
+[data-view="predict"] .lab-status--emerging { background: var(--serious-soft); color: var(--serious-text); }
+[data-view="predict"] .lab-status--fading { background: var(--info-soft); color: var(--info); }
+[data-view="predict"] .lab-status--stable { background: var(--muted-soft); color: var(--muted); }
+[data-view="predict"] .lab-result--detected { background: var(--good-soft); color: var(--good-text); }
+[data-view="predict"] .lab-result--missed { background: var(--critical-soft); color: var(--critical); }
+[data-view="predict"] .lab-result--pending { background: var(--warning-soft); color: var(--text); }
+[data-view="predict"] .lab-result--unmapped { background: var(--muted-soft); color: var(--muted); }
+[data-view="predict"] .lab-emerging tr.is-stable td { color: var(--text-2); }
+[data-view="predict"] .lab-mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: var(--fs-12); }
+[data-view="predict"] .lab-detail { font-size: var(--fs-12); color: var(--text-2); white-space: normal; }
+[data-view="predict"] .lab-backtest td.wrap { white-space: normal; min-width: 260px; }
+
+/* Backtest summary stats */
+[data-view="predict"] .lab-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: var(--sp-3); margin-bottom: var(--sp-4); }
+[data-view="predict"] .lab-stat { padding: var(--sp-3); border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--surface-2); min-width: 0; }
+[data-view="predict"] .lab-stat__value { font-size: var(--fs-20); font-weight: 600; line-height: 1.2; }
+[data-view="predict"] .lab-stat__label { font-size: var(--fs-12); font-weight: 600; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); margin-top: 2px; }
+[data-view="predict"] .lab-stat__sub { font-size: var(--fs-12); margin-top: 2px; }
+
+/* Tablet */
+@media (max-width: 1023px) {
+  [data-view="predict"] .lab-forecast-lower, [data-view="predict"] .lab-anomaly-grid { grid-template-columns: 1fr; }
+}
+
+/* Phone: one column, no horizontal page scroll, tables scroll inside their cards */
+@media (max-width: 767px) {
+  [data-view="predict"] .model-cards { grid-template-columns: 1fr; }
+  [data-view="predict"] .lab-layout { grid-template-columns: 1fr; }
+  [data-view="predict"] .lab-controls { position: static; }
+  [data-view="predict"] .lab-asof .date-input { flex: 1 1 auto; min-width: 0; }
+  [data-view="predict"] .lab-section-head { align-items: flex-start; }
+  [data-view="predict"] .lab-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  [data-view="predict"] .lab-backtest td.wrap { min-width: 200px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-view="predict"] .lab-slider input[type="range"] { transition: none; }
+}

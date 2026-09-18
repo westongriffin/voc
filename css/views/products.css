@@ -1,0 +1,72 @@
+/* L-Nutra · Voice of the Customer — Products view styles (js/views/products.js)
+   Layout only; colors come from tokens. Loaded after css/views.css. */
+
+[data-view="products"] .product-switcher { margin-bottom: var(--sp-5); overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: thin; padding-bottom: 2px; }
+[data-view="products"] .product-switcher__seg { flex-wrap: nowrap; }
+[data-view="products"] .product-switcher__seg button { display: inline-flex; align-items: center; gap: 6px; }
+[data-view="products"] .product-switcher__dot { width: 8px; height: 8px; border-radius: 50%; flex: none; }
+[data-view="products"] .product-switcher__n {
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+  color: var(--muted);
+  font-size: var(--fs-12);
+}
+[data-view="products"] .product-switcher__seg button[aria-pressed="true"] .product-switcher__n { color: var(--text-2); }
+
+/* KPI tiles: a one-line note under the meta row (interval text, "per-order rates unavailable") */
+[data-view="products"] .products-tiles .kpi-tile__note {
+  margin-top: var(--sp-1);
+  font-size: var(--fs-12);
+  color: var(--muted);
+  line-height: 1.35;
+}
+
+[data-view="products"] .products-charts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-4); margin-top: var(--sp-5); align-items: start; }
+[data-view="products"] .products-multiples { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--sp-3); }
+[data-view="products"] .products-lists { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-4); margin-top: var(--sp-5); align-items: start; }
+
+/* Lot × week heat-table */
+[data-view="products"] .lot-card .card__header { align-items: flex-start; }
+[data-view="products"] .lot-scroll { overflow: auto; max-height: 520px; border: 1px solid var(--border); border-radius: var(--radius-sm); }
+[data-view="products"] .lot-table { min-width: 100%; border-collapse: separate; border-spacing: 0; }
+[data-view="products"] .lot-table th, [data-view="products"] .lot-table td { white-space: nowrap; }
+[data-view="products"] .lot-table thead th { position: sticky; top: 0; z-index: 2; background: var(--surface); }
+[data-view="products"] .lot-table th.lot-table__lot { position: sticky; left: 0; z-index: 1; background: var(--surface); min-width: 150px; }
+[data-view="products"] .lot-table thead th.lot-table__lot { z-index: 3; }
+[data-view="products"] .lot-table__week { font-size: var(--fs-12); color: var(--muted); font-weight: 500; }
+[data-view="products"] .lot-table__products { color: var(--text-2); max-width: 220px; overflow: hidden; text-overflow: ellipsis; }
+[data-view="products"] .lot-table__cell { text-align: center; font-variant-numeric: tabular-nums; min-width: 34px; }
+/* lot-table cell text color comes from .ramp-step-N (components.css) */
+[data-view="products"] .lot-table__btn { padding: 0; height: auto; font-weight: 600; font-variant-numeric: tabular-nums; }
+[data-view="products"] .lot-table tr.is-food-safety th, [data-view="products"] .lot-table tr.is-food-safety td { font-weight: 600; }
+[data-view="products"] .lot-table__badge { margin-left: var(--sp-2); vertical-align: middle; }
+[data-view="products"] .lot-card__foot { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-3); flex-wrap: wrap; }
+
+/* Top praise / complaints */
+[data-view="products"] .top-list__items { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--sp-2); }
+[data-view="products"] .top-list__item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+  transition: background var(--dur) var(--ease);
+}
+[data-view="products"] .top-list__item:hover { background: var(--surface); }
+[data-view="products"] .top-list__item:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+[data-view="products"] .top-list__subject { font-weight: 600; font-size: var(--fs-14); overflow-wrap: anywhere; }
+[data-view="products"] .top-list__snippet { color: var(--text-2); font-size: var(--fs-13); line-height: 1.45; margin-top: 2px; overflow-wrap: anywhere; }
+[data-view="products"] .top-list__score { font-variant-numeric: tabular-nums; }
+
+@media (max-width: 1023px) {
+  [data-view="products"] .products-multiples { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 767px) {
+  [data-view="products"] .products-charts,
+  [data-view="products"] .products-multiples,
+  [data-view="products"] .products-lists { grid-template-columns: 1fr; }
+  [data-view="products"] .lot-scroll { max-height: 420px; }
+  [data-view="products"] .lot-table th.lot-table__lot { min-width: 120px; }
+  [data-view="products"] .lot-table__products { max-width: 140px; }
+}
